@@ -450,7 +450,7 @@
   }
 
   .medium-list {
-    max-height: 300px;
+    max-height: 250px;
   }
 
   .medium-list li {
@@ -494,13 +494,29 @@
 
 }
 
+/* Very small phones: shorten the scrollable name list further so the
+   next button is never hidden below the fold. */
+@media (max-width: 340px) {
+  .medium-list {
+    max-height: 200px;
+  }
+}
+
 /* Auto-zoom: fluid scale that adjusts to any screen width (phone to iPad).
    Uses transform: scale() for cross-browser support (zoom is unsupported
    on older iOS Safari). Scales from 0.72 at 320px up to 0.95 at 1024px
-   so content always fits with buttons clearly visible — no edge clipping. */
+   so content always fits with buttons clearly visible — no edge clipping.
+
+   Also switch to flex-start alignment on mobile so content starts from
+   the top instead of being vertically centered (which creates empty space
+   above the image and pushes buttons below the fold / under the URL bar). */
 @media (max-width: 1024px) {
+  .quiz-backdrop {
+    align-items: flex-start;
+  }
+
   .quiz-container {
     transform: scale(clamp(0.72, 0.72 + ((100vw - 320px) / (1024px - 320px)) * 0.23, 0.95));
-    transform-origin: center;
+    transform-origin: center top;
   }
 }
