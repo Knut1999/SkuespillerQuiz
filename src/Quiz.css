@@ -92,6 +92,7 @@
 
 .quiz-header .quit-btn {
   all: unset;
+  box-sizing: border-box;
   cursor: pointer;
   font-size: 13px;
   color: var(--text);
@@ -196,6 +197,7 @@
 
 .easy-option-btn {
   all: unset;
+  box-sizing: border-box;
   display: block;
   width: 100%;
   text-align: center;
@@ -344,6 +346,7 @@
 
 .next-btn {
   all: unset;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -486,5 +489,20 @@
   .feedback-banner {
     font-size: 16px;
     padding: 12px 16px;
+  }
+
+  /* Zoom the whole quiz out on narrow screens so buttons are clearly
+     visible with breathing room (no edge clipping). Uses transform: scale()
+     for cross-browser support (zoom is not supported on older iOS Safari). */
+  .quiz-container {
+    transform: scale(0.82);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 340px) {
+  .quiz-container {
+    transform: scale(0.78);
+    transform-origin: center;
   }
 }
