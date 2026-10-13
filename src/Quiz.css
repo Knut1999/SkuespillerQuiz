@@ -491,18 +491,16 @@
     padding: 12px 16px;
   }
 
-  /* Zoom the whole quiz out on narrow screens so buttons are clearly
-     visible with breathing room (no edge clipping). Uses transform: scale()
-     for cross-browser support (zoom is not supported on older iOS Safari). */
-  .quiz-container {
-    transform: scale(0.82);
-    transform-origin: center;
-  }
+
 }
 
-@media (max-width: 340px) {
+/* Auto-zoom: fluid scale that adjusts to any screen width (phone to iPad).
+   Uses transform: scale() for cross-browser support (zoom is unsupported
+   on older iOS Safari). Scales from 0.72 at 320px up to 0.95 at 1024px
+   so content always fits with buttons clearly visible — no edge clipping. */
+@media (max-width: 1024px) {
   .quiz-container {
-    transform: scale(0.78);
+    transform: scale(clamp(0.72, 0.72 + ((100vw - 320px) / (1024px - 320px)) * 0.23, 0.95));
     transform-origin: center;
   }
 }
